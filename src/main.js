@@ -10,7 +10,12 @@ import 'popper.js'
 
 
 
-Vue.component('navpar', require('./components/navpar.vue').default);
+Vue.component('navpar', require('./components/navpar.vue').default); //import component golpaly
+Vue.component('ProductList', require('./sections/ProductList.vue').default); //import component golpaly
+Vue.component('learnMore', require('./sections/learnMore.vue').default); //import component golpaly
+
+window.$ = window.jQuery = jquery;
+
 
 Vue.config.productionTip = false
 
@@ -18,3 +23,4 @@ new Vue({
   router,
   render: h => h(App)
 }).$mount('#app')
+
