@@ -101,7 +101,7 @@
 </template>
 
 <script>
-import hero from "@/components/hero.vue";
+// import hero from "@/components/hero.vue";
 export default {
   name: "admin",
   data(){
@@ -111,11 +111,11 @@ export default {
       }
   },
   components: {
-    hero
+    // hero
   },
   methods:{
       closeMenu(){
-       $ (".page-wrapper").toggleClass("toggled");
+       $(".page-wrapper").toggleClass("toggled");
       }
 
   }

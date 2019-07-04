@@ -18,10 +18,12 @@
     </ul>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-    Launch demo modal
-    </button> -->
+      <!-- <b-button class="btn btn-outline-success my-2 my-sm-0" type="submit" v-b-modal.modal-1>Search</b-button> -->
+        <!-- <b-button v-b-modal.modal-center>get started</b-button> -->
+          <b-button v-b-modal.modal-center>Launch centered modal</b-button>
+
+
+ 
     </form>
   </div>
 </nav>
@@ -38,5 +40,15 @@ export default {
 </script>
 
 <style scoped>
+
+.btn-secondary{
+    color: #6c757d !important;
+    background-color: #ffffff !important;
+    border-color: #8BC34A !important;
+}
+
+.btn-secondary:focus, .btn-secondary.focus{
+  box-shadow: #fff !important;
+}
 
 </style>

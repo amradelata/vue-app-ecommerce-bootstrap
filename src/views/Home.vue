@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <!-- <Login/> -->
+    <Login/>
 
     <navpar>
       
@@ -14,13 +14,13 @@
 
 <script>
 import hero from '../components/hero.vue'
-// import Login from '../components/Login.vue'
+import Login from '../components/Login.vue'
 
 
 export default {
     components: {
     hero,
-    // Login
+    Login
     }, 
     
 }
