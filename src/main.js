@@ -7,6 +7,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'; //import bootstrap-vue
 import './assets/app.css'
 import jquery from 'jquery'
 import 'popper.js'
+import {fb}   from './firebase'
 
 Vue.use(BootstrapVue) //import bootstrap-vue
 
@@ -18,10 +19,17 @@ Vue.component('learnMore', require('./sections/learnMore.vue').default); //impor
 window.$ = window.jQuery = jquery;
 
 
-Vue.config.productionTip = false
+let app = '';
 
-new Vue({
-  router,
-  render: h => h(App)
-}).$mount('#app')
+fb.auth().onAuthStateChanged(function(user) {
+
+  if(!app){
+    new Vue({
+      router,
+      render: h => h(App)
+    }).$mount("#app");
+    
+  }
+
+});
 

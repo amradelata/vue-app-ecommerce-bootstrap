@@ -93,10 +93,14 @@ data(){
 },
 methods:{
   register(){
-      fb.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+      fb.auth().createUserWithEmailAndPassword(this.email, this.password)
+      .then((user) => {
+        this.$router.replace('admin');
+      })
+      .catch(function(error) {
         // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
+        let errorCode = error.code;
+        let errorMessage = error.message;
         // [START_EXCLUDE]
         if (errorCode == 'auth/weak-password') {
           alert('The password is too weak.');

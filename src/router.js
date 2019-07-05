@@ -6,7 +6,7 @@ import overview from './views/overview.vue'
 import Orders from './views/Orders.vue'
 import Products from './views/Products.vue'
 import profile from './views/profile.vue'
-
+import {fb} from './firebase'
 
 
 
@@ -14,7 +14,7 @@ import profile from './views/profile.vue'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
@@ -27,7 +27,7 @@ export default new Router({
       path: '/admin',
       name: 'admin',
       component: admin,
-      // meta: { requiresAuth: true },
+      meta: { requiresAuth: true },
       children: [                     //Nested Routes
         {
           path: "overview",
@@ -61,3 +61,19 @@ export default new Router({
   //   return { x: 0, y: 0 }
   // }
 })
+
+router.beforeEach((to, from, next) => {   ///you can't go to the admin without sign up
+
+  const requiresAuth = to.matched.some(x => x.meta.requiresAuth)
+  const currentUser = fb.auth().currentUser
+
+  if (requiresAuth && !currentUser) {
+      next('/')
+  } else if (requiresAuth && currentUser) {
+      next()
+  } else {
+      next()
+  }
+})
+
+export default router;
