@@ -1,5 +1,9 @@
 <template>
   <div class="admin">
+
+
+<product/>
+     <!-- start sidebar  -->
 <div class="page-wrapper default-theme sidebar-bg bg1 toggled">
         <a id="show-sidebar" @click="closeMenu" class="btn btn-sm btn-dark" href="#">
             <i class="fas fa-bars"></i>
@@ -16,7 +20,7 @@
                 <!-- sidebar-header  -->
                 <div class="sidebar-item sidebar-header">
                     <div class="user-pic">
-                        <img class="img-responsive img-rounded" src="/img/user.png" alt="User picture">
+                        <img class="img-responsive img-rounded" src="https://www.victoryeducationgroup.co.za/wp-content/uploads/2017/11/imageholders.png" alt="User picture">
                     </div>
                     <div class="user-info">
                         <span class="user-name">Jhon
@@ -83,7 +87,11 @@
                     </ul>
                 </div>
                 <!-- sidebar-menu  -->
+
+                
+
             </div>
+
        
         </nav>
         <!-- sidebar-content  -->
@@ -101,7 +109,7 @@
 </template>
 
 <script>
-// import hero from "@/components/hero.vue";
+import product from '../components/product.vue'
     import {fb} from '../firebase';   
 export default {
   name: "admin",
@@ -112,7 +120,7 @@ export default {
       }
   },
   components: {
-    // hero
+   product
   },
   methods:{
       closeMenu(){

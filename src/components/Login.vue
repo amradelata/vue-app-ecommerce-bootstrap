@@ -127,7 +127,6 @@ methods:{
   login(){
   fb.auth().signInWithEmailAndPassword(this.email, this.password)
         .then(() => {
-        // $('#login').modal('hide')
           this.$router.replace('admin');  
         })
         .catch(function(error) {
