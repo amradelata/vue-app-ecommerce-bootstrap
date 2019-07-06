@@ -20,7 +20,7 @@
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
       <!-- <b-button class="btn btn-outline-success my-2 my-sm-0" type="submit" v-b-modal.modal-1>Search</b-button> -->
         <!-- <b-button v-b-modal.modal-center>get started</b-button> -->
-          <b-button v-b-modal.modal-center>Launch centered modal</b-button>
+          <b-button v-b-modal.modal-center>Get started</b-button>
 
 
  
