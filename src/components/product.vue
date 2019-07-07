@@ -1,7 +1,8 @@
 <template>
     <div class="product">
-                <div class="container">
-            <div class="row h-100 justify-content align-items-center">
+        <div class="container">
+            <!-- hero -->
+            <div class="row justify-content align-items-center productHero">
 
                 <div class="col-md-5">
                     <div class="hero-content">
@@ -21,28 +22,15 @@
                 </div>
 
             </div>
-
+        <!-- hero -->
         <div class="row justify-content align-items-center">
-            <div class="col-md-12">
-                <p> basic CRUD</p>
+             <h3 class="title">Products list</h3>
+            <button  @click="$bvModal.show('modal-scoped'), addNew" class="btn btn-primary">Add Product</button>
+                       
 
-                <b-input id="productName" placeholder="product name" type="text" v-model="product.name"></b-input>
-                <b-input id="imgUrl" placeholder="img URL" type="text" v-model="product.img"></b-input>
-                <b-input id="price" placeholder="price" type="text" v-model="product.price" @keyup.enter="saveData"></b-input>
-                
-                <b-button
-                variant="primary"
-                size="sm"
-                class="float-left"
-                @click="saveData"
-                >
-                Save Data
-                </b-button>
-            </div>
+
 
             <hr>
-                        <h3 class="d-inline-block">Products list</h3>
-            <!-- <button @click="addNew" class="btn btn-primary float-right">Add Product</button> -->
 
             <div class="table-responsive">
               
@@ -59,23 +47,23 @@
                   <tbody>
                       <tr v-for="product in products">
                         <td>
-                          {{product.data().name}}
+                          {{product.name}}
                         </td>
 
                         <td>
-                          {{product.data().price}}
+                          {{product.price}}
                         </td>
 
                         <td>
                           
-                          <div class="img" :style="{ backgroundImage: 'url(' + product.data().img + ')' }"></div>
+                          <div class="img" :style="{ backgroundImage: 'url(' + product.img + ')' }"></div>
                         </td>
                             
                         <td>
 
                           <button class="btn btn-success" @click="$bvModal.show('modal-scoped'), editProduct(product)" >Edit</button>
                                                     
-                          <button class="btn btn-danger" @click="deleteProduct(product.id)">Delete</button> 
+                          <button class="btn btn-danger" @click="deleteProduct(product)">Delete</button> 
                         </td>
 
                       </tr>
@@ -90,22 +78,32 @@
         <!--  -->
   <!-- <b-button @click="$bvModal.show('modal-scoped')">Open Modal</b-button> -->
 
-  <b-modal id="modal-scoped">
+  <b-modal id="modal-scoped" size="xl">
     <template slot="modal-header">
       <h5>Edit product</h5>
     </template>
 
-    <template  >
+    <template slot-scope="{ ok, cancel, hide }">
         <b-input id="productName" placeholder="product name" type="text" v-model="product.name"></b-input>
+        <b-input id="productDescription" placeholder="product Description" type="text" v-model="product.productDescription"></b-input>
+
         <b-input id="imgUrl" placeholder="img URL" type="text" v-model="product.img"></b-input>
-        <b-input id="price" placeholder="price" type="text" v-model="product.price" @keyup.enter="saveData"></b-input>
+        <b-input id="price" placeholder="price" type="text" v-model="product.price" @keyup.enter="hide('forget'), addProduct()"></b-input>
+   
     </template>
 
       <template slot="modal-footer" slot-scope="{ ok, cancel, hide }">
       <!-- Button with custom close trigger value -->
-      <b-button size="sm" variant="outline-secondary" @click="hide('forget'), updateProduct()">
-        save
-      </b-button>
+         <b-button size="sm" variant="outline-secondary" @click="hide('forget'), addProduct()">Add</b-button>
+        <b-button  size="sm" variant="outline-secondary" @click="hide('forget'), updateProduct()">Apply changes</b-button>
+
+     
+
+
+
+     
+       
+      
     </template>
   </b-modal>
         <!--  -->
@@ -119,81 +117,73 @@ import {fb,db}from '../firebase';
 export default {
     data(){
         return{
-            products:[],
+           products:[],
             product:{
                 name: null,
+                productDescription: null,
                 price: null,
                 img: null
             },
-            actevItem: null
+            actevItem: null,
+            modal: null
 
+        }
+    },
+    firestore(){
+        return{
+             products: db.collection('products'),
         }
     },
     methods:{
-        watch(){
-            db.collection("products")
-                .onSnapshot((querySnapshot) =>{
-                    this.products = [];
-                    querySnapshot.forEach((doc) =>{
-                        this.products.push(doc);
-                    });
-                    // console.log("Current cities in CA: ", cities.join(", "));
-                });
-        },
-        readData(){
-            db.collection("products").get().then((querySnapshot) => {
-                querySnapshot.forEach((doc) => {
-                    // doc.data() is never undefined for query doc snapshots
-                    this.products.push(doc);
-                });
-            });
-        },
-        saveData(){
-            db.collection("products").add(
-                this.product
-            )
-            .then((docRef)=> {
-                console.log("Document written with ID: ", docRef.id);
-                this.readData();
+        addNew(){
+            this.modal = 'new';
+            // this.reset();
+            // $('#product').modal('show');
+            },
+        addProduct(){
+            this.$firestore.products.add(this.product)
+            Toast.fire({
+                type: 'success',
+                title: 'Product created successfully'
             })
-            .catch(function(error) {
-                console.error("Error adding document: ", error);
-            });
-        },
-        reset(){
-            // Object.assign(this.$data, this.$options.data.apply(this));
         },
         deleteProduct(doc){
-            if(confirm('Are You Sure')){
-                db.collection("products").doc(doc).delete().then(function() {
-                console.log("Document successfully deleted!");
-                }).catch(function(error) {
-                console.error("Error removing document: ", error);
-                });
-            }else{
-
+            // start animation delete popup
+            Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+            if (result.value) {
+                // console.log(doc['.key'])
+                this.$firestore.products.doc(doc['.key']).delete()
+                // toast poopup
+                    Toast.fire({
+                    type: 'success',
+                    title: 'Delete in successfully'
+                    })
             }
+            })
+            // end animation delete popup
         },
         editProduct(product){
-            this.product = product.data();
-            this.actevItem = product.id;
+            this.modal = 'edit';
+            this.product = product
+            // console.log(this.product['.key'])
         },
-        updateProduct(){
-            db.collection("products").doc(this.actevItem).update(this.product)
-            .then(() => {
-                console.log("Document successfully updated!");
-            })
-            .catch(function(error) {
-                // The document probably doesn't exist.
-                console.error("Error updating document: ", error);
-            });
-            this.watch()
-        }
+    updateProduct(){
+        this.$firestore.products.doc(this.product['.key']).update(this.product);
+        // Toast.fire({
+        // type: 'success',
+        // title: 'Updated  successfully'
+        //   })
+        
     },
-    created(){
-        this.readData();
-    },
-
+    }
 }
 </script>
 
@@ -206,4 +196,21 @@ export default {
   background-repeat: no-repeat;
   background-position: center center;
 } */
+
+.productHero{
+    margin-bottom: 200px
+}
+
+.table{
+    margin-top: 100px
+}
+.title{
+    margin-right: 300px
+}
+#productDescription{
+    height: 300px;
+}
+.form-control{
+    margin: 20px 0;
+}
 </style>
