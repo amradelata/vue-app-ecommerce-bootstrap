@@ -6,6 +6,7 @@ import overview from './views/overview.vue'
 import Orders from './views/Orders.vue'
 import Products from './views/Products.vue'
 import profile from './views/profile.vue'
+import checkout from './views/checkout.vue'
 import {fb} from './firebase'
 
 
@@ -22,6 +23,11 @@ const router = new Router({
       path: '/',
       name: 'home',
       component: Home
+    },
+    {
+      path: '/checkout',
+      name: 'checkout',
+      component: checkout
     },
     {
       path: '/admin',

@@ -2,7 +2,6 @@
   <div class="admin">
 
 
-<product/>
      <!-- start sidebar  -->
 <div class="page-wrapper default-theme sidebar-bg bg1 toggled">
         <a id="show-sidebar" @click="closeMenu" class="btn btn-sm btn-dark" href="#">
@@ -109,7 +108,6 @@
 </template>
 
 <script>
-import product from '../components/product.vue'
     import {fb} from '../firebase';   
 export default {
   name: "admin",
@@ -119,9 +117,7 @@ export default {
           email:null,
       }
   },
-  components: {
-   product
-  },
+
   methods:{
       closeMenu(){
        $(".page-wrapper").toggleClass("toggled");
@@ -136,6 +132,10 @@ export default {
           });
       }
   },
+  created(){
+      var user = fb.auth().currentUser;
+      this.email = user.email                   //to dsplay the email of tish user
+  }
  
 
 };

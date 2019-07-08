@@ -15,7 +15,14 @@
       <div>
       <b-form >
         <!--  -->
-      <label class="sr-only" for="inline-form-input-name">Name</label>
+      <b-input
+      id="inline-form-input-name"
+      class="mb-2 mr-sm-2 mb-sm-0"
+      placeholder="user name"
+      type="text"
+      v-model="name"
+      ></b-input>
+
       <b-input
       id="inline-form-input-name"
       class="mb-2 mr-sm-2 mb-sm-0"
@@ -24,7 +31,6 @@
       v-model="email"
       ></b-input>
 
-      <label class="sr-only" for="inline-form-input-username">Username</label>
       <b-input-group class="mb-2 mr-sm-2 mb-sm-0">
       <b-input id="inline-form-input-username" placeholder="password" type="password" @keyup.enter="login" v-model="password"></b-input>
       </b-input-group>
@@ -47,14 +53,12 @@
       <b-form >
         <!--  -->
         <h2 class="text-center">Sign Up</h2>
-      <label class="sr-only" for="inline-form-input-name">Name</label>
-
-
-      <label class="sr-only" for="inline-form-input-username">Username</label>
+            
       <b-input-group class="mb-2 mr-sm-2 mb-sm-0">
-      <b-input id="username" placeholder="Username" type="text" v-model="name"></b-input>
-      <b-input id="email" placeholder="email" type="email" v-model="email"></b-input>
-      <b-input id="password" placeholder="password" type="password" v-model="password"></b-input>
+
+        <b-input id="username" type="text" v-model="name" placeholder="Your name"></b-input>
+        <b-input id="email" placeholder="email" type="email" v-model="email"></b-input>
+        <b-input id="password" placeholder="password" type="password" v-model="password"></b-input>
       </b-input-group>
 
 <!--  -->
@@ -91,7 +95,7 @@
 
 
 <script>
-import {fb} from '../firebase'
+import {fb,db} from '../firebase'
 
 
 export default {
@@ -126,22 +130,49 @@ methods:{
   },
   login(){
   fb.auth().signInWithEmailAndPassword(this.email, this.password)
-        .then(() => {
-          this.$router.replace('admin');  
-        })
-        .catch(function(error) {
-            // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            if (errorCode === 'auth/wrong-password') {
-                alert('Wrong password.');
-            } else {
-                alert(errorMessage);
-            }
-            console.log(error);
-    });
-  }
-}
+          .then(() => {
+            this.$router.replace('admin');  
+          })
+          .catch(function(error) {
+              // Handle Errors here.
+              var errorCode = error.code;
+              var errorMessage = error.message;
+              if (errorCode === 'auth/wrong-password') {
+                  alert('Wrong password.');
+              } else {
+                  alert(errorMessage);
+              }
+              console.log(error);
+      });
+  },
+      register(){
+            fb.auth().createUserWithEmailAndPassword(this.email, this.password)
+                .then((user) => {
+                    
+                    db.collection("profiles").doc(user.user.uid).set({
+                        name: this.name
+                    })
+                    .then(function() {
+                        console.log("Document successfully written!");
+                    })
+                    .catch(function(error) {
+                        console.error("Error writing document: ", error);
+                    });
+                    this.$router.replace('admin');
+                })
+                .catch(function(error) {
+                // Handle Errors here.
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                if (errorCode == 'auth/weak-password') {
+                    alert('The password is too weak.');
+                } else {
+                    alert(errorMessage);
+                }
+                console.log(error);
+            });
+      }
+    },
 
 }
 

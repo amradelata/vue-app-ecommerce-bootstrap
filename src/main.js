@@ -9,8 +9,13 @@ import jquery from 'jquery'
 import VueFirestore from 'vue-firestore'
 import 'popper.js'
 import {fb}   from './firebase'
-// import Swal from 'sweetalert2'
+import Swal from 'sweetalert2'
+import 'firebase/storage'
 
+
+// vueX
+
+import store from './store.js'
 
 
 
@@ -19,7 +24,10 @@ import {fb}   from './firebase'
 Vue.use(BootstrapVue) //import bootstrap-vue
 Vue.use(VueFirestore)
 
-
+Vue.use(VueFirestore, {
+  key: 'id',         // the name of the property. Default is '.key'.
+  enumerable: true  //  whether it is enumerable or not. Default is true.
+})
 
 
 
@@ -29,20 +37,21 @@ Vue.component('learnMore', require('./sections/learnMore.vue').default); //impor
 
 
 
+
 window.$ = window.jQuery = jquery;
-// window.Swal = Swal
+window.Swal = Swal
 
 
-// // config toast poopup
-// const Toast = Swal.mixin({
-//   toast: true,
-//   position: 'top-end',
-//   showConfirmButton: false,
-//   timer: 3000
-// });
+// config toast poopup
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000
+});
 
 
-// window.Toast = Toast
+window.Toast = Toast
 
 
 
@@ -54,6 +63,7 @@ fb.auth().onAuthStateChanged(function(user) {
   if(!app){
     new Vue({
       router,
+      store,
       render: h => h(App)
     }).$mount("#app");
     
