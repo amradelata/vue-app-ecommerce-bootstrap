@@ -133,7 +133,7 @@ export default {
           const auth = fb.auth(); 
                    
           auth.sendPasswordResetEmail(auth.currentUser.email).then(() =>  {
-               Toast.fire({
+               window.Toast.fire({
                 type: 'success',                                  //send reset pasword to your email
                 title: 'Check Your Email'
               })

@@ -6,7 +6,7 @@
                     <b-row class="mt-2">
                         <b-col sm="6">
                             <div class=" content">
-                                <h1>Grow Your Business Faster</h1>
+                                <h1>GROW Your Business Faster</h1>
                                 <p class="mb-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam assumenda ea quo cupiditate facere deleniti fuga officia.</p>
                                 <div>
                                     <a href="#" class="btn btn-primary mr-2 mb-2">Get Started</a>

@@ -70,7 +70,8 @@ export default {
   },
   methods:{
       addQty(i, id){
-        console.log(this.$store.state.cart)
+        console.log(i, id)// eslint-disable-line no-console
+        console.log(this.$store.state.cart)// eslint-disable-line no-console
       }
   }
 }
