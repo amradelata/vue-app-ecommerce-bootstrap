@@ -63,9 +63,9 @@ const router = new Router({
     }
   ],
 
-  // scrollBehavior (to, from, savedPosition) {
-  //   return { x: 0, y: 0 }
-  // }
+  scrollBehavior (to, from, savedPosition) {
+    return { x: 0, y: 0 }
+  }
 })
 
 router.beforeEach((to, from, next) => {   ///you can't go to the admin without sign up

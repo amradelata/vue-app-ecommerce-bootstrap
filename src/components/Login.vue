@@ -112,7 +112,7 @@ methods:{
   register(){
       fb.auth().createUserWithEmailAndPassword(this.email, this.password)
       .then((user) => {
-        this.$router.replace('admin');
+        this.$router.replace('admin/products');
       })
       .catch(function(error) {
         // Handle Errors here.
@@ -131,7 +131,7 @@ methods:{
   login(){
   fb.auth().signInWithEmailAndPassword(this.email, this.password)
           .then(() => {
-            this.$router.replace('admin');  
+            this.$router.replace('admin/products');  
           })
           .catch(function(error) {
               // Handle Errors here.
@@ -158,7 +158,7 @@ methods:{
                     .catch(function(error) {
                         console.error("Error writing document: ", error);
                     });
-                    this.$router.replace('admin');
+                    this.$router.replace('admin/products');
                 })
                 .catch(function(error) {
                 // Handle Errors here.

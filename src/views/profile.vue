@@ -1,27 +1,26 @@
 <template>
-    <div class="profile">
-
+    <div class="profile site-blocks-cover">
+      <navpar/>
         <div class="container">
             <!-- hero -->
-            <div class="row justify-content align-items-center productHero">
-
-                <div class="col-md-5">
-                    <div class="hero-content">
-                        <h1 class="hero-title">
-                            profile Page
-                        </h1>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore repellat voluptatem earum natus exercitationem voluptatibus, beatae eaque, laborum aut possimus ut sequi illo culpa porro temporibus delectus! Aperiam, voluptate earum.
-                        </p>
-                    </div>
-                </div>
-                <div class="col-md-7">
-                    <div class="img">
-                        
-                        <img src="https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/profile_6l1l.svg" class="img-fluid" alt="Responsive image">
-                    </div>
+            <div class="row align-items-center justify-content-center">
+                <div class="col-md-12" style="position: relative;" data-aos="fade-up">
+                    <b-row class="mt-2">
+                        <b-col sm="6">
+                            <div class=" content">
+                                <h1>Grow Your Business Faster</h1>
+                                <p class="mb-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam assumenda ea quo cupiditate facere deleniti fuga officia.</p>
+                                <div>
+                                </div>
+                            </div>
+                        </b-col>
+                        <b-col sm="6">
+                            <img src="../../public/img/svg/profile.svg" alt="Image" class="img-fluid img-absolute">
+                        </b-col>
+                    </b-row>
                 </div>
             </div>
+        <!-- hero -->
 
 
         <!-- form -->
@@ -44,10 +43,10 @@
                   </b-col>
                   </b-row>
                     <b-row>
-                      <b-col sm="10">
+                      <b-col sm="7">
                         <b-form-input  v-model="profile.postCode" placeholder="Postcode"></b-form-input>
                       </b-col>
-                      <b-col sm="2">
+                      <b-col sm="4">
                       <b-button variant="info" @click="updateProfile">Save Changes</b-button>
                       </b-col>
                     </b-row>
@@ -70,12 +69,12 @@
                   </b-col>
                   </b-row>
                     <b-row>
-                      <b-col sm="10">
+                      <b-col sm="7">
                         <b-form-input  v-model="account.confirmPassword"  placeholder="Confirm password"></b-form-input>
                       </b-col>
-                      <b-col sm="2">
-                        <b-button variant="info" @click="updateProfile">Save Changes</b-button>
-                        <b-button variant="success" @click="resetPassword">click to reset Password</b-button>
+                      <b-col sm="4">
+                        <!-- <b-button class="btn.btn-info" @click="updateProfile">Save Changes</b-button> -->
+                        <b-button class="btn btn-primary" @click="resetPassword">click to reset Password</b-button>
 
                       </b-col>
                     </b-row>
@@ -131,7 +130,8 @@ export default {
   },
   methods:{
       resetPassword(){
-          const auth = fb.auth();          
+          const auth = fb.auth(); 
+                   
           auth.sendPasswordResetEmail(auth.currentUser.email).then(() =>  {
                Toast.fire({
                 type: 'success',                                  //send reset pasword to your email
@@ -155,8 +155,85 @@ export default {
 
  <style scoped>
 
+ .site-blocks-cover, .site-blocks-cover > .container > .row {
+    min-height: 600px;
+    height: calc(100vh); }
+  .site-blocks-cover.inner-page-cover, .site-blocks-cover.inner-page-cover > .container > .row {
+    min-height: 400px;
+    height: calc(20vh); }
+  .site-blocks-cover h1 {
+    font-size: 3.5rem;
+    font-weight: 400;
+    color: #000;
+    font-weight: 900; }
+    @media (max-width: 991.98px) {
+      .site-blocks-cover h1 {
+        font-size: 2rem; } }
+  .site-blocks-cover p {
+    color: #6c757d;
+    font-size: 1rem;
+    font-weight: 300; }
+  .site-blocks-cover .intro-text {
+    font-size: 16px;
+    line-height: 1.5; }
+  @media (max-width: 991.98px) {
+    .site-blocks-cover .display-1 {
+      font-size: 3rem; } }
+.content{
+    margin-top: auto;
+    margin-bottom: auto;
+    display: inline-block;
+}
+.img-fluid{
+display: inline-block;
+}
+
+
+
 .form-control{
       margin-bottom: 35px;
+}
+
+
+/* green btn */
+.btn.btn-primary{
+    font-size: 16px;
+    border-radius: 30px;
+    padding: 10px 30px;
+    border-width: 2px;
+    background: #00d2b5;
+    border-color: #00d2b5;
+    color: #fff;
+    box-shadow: 0 4px 20px -5px rgba(0, 210, 181, 0.4);
+}
+.btn.btn-primary:hover{
+color: #000;
+background: #fff;
+transition: 0.36s
+}
+/* green btn */
+/* bule btn */
+.btn.btn-info{
+    font-size: 16px;
+    border-radius: 30px;
+    padding: 10px 30px;
+    border-width: 2px;
+    background: rgb(99, 205, 218);
+    border-color: rgb(99, 205, 218);
+    color: #fff;
+    box-shadow: 0 4px 20px -5px rgb(61, 193, 211);
+    margin-right: 20px
+}
+.btn.btn-info:hover{
+color: #000;
+background: #fff;
+transition: 0.36s
+}
+
+/* bule btn */
+
+.card{
+  margin-bottom: 100px;
 }
 
 </style>

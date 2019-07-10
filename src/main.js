@@ -34,6 +34,10 @@ Vue.use(VueFirestore, {
 Vue.component('navpar', require('./components/navpar.vue').default); //import component golpaly
 Vue.component('ProductList', require('./sections/ProductList.vue').default); //import component golpaly
 Vue.component('learnMore', require('./sections/learnMore.vue').default); //import component golpaly
+Vue.component('contact', require('./sections/contact.vue').default); //import component golpaly
+Vue.component('last', require('./sections/last.vue').default); //import component golpaly
+Vue.component('Login', require('./components/Login.vue').default); //import component golpaly
+
 
 
 

@@ -2,13 +2,18 @@
   <div class="home">
     <Login/>
 
-    <navpar>
+    <navpar/>
       
-    </navpar>
+   
 
     <hero/>
     <ProductList/>
     <learnMore/>
+    <contact/>
+
+ <!-- you can't name commponents footer -->
+    <last/>  
+    
 
     <!-- modale -->
 
@@ -19,18 +24,12 @@
 
 <script>
 import hero from '../components/hero.vue'
-import Login from '../components/Login.vue'
 import miniCart from '../components/miniCart.vue'
-
-
-
 export default {
     components: {
     hero,
-    Login,
     miniCart
     }, 
     
 }
 </script>
-   

@@ -1,18 +1,19 @@
 <template>
   <div class="hello">
     <nav class="navbar navbar-expand-lg navbar-light bg-light container">
-  <router-link to="/" class="navbar-brand" >Shop</router-link>
+  <router-link to="/" class="navbar-brand" style="color: #00d2b5; font-size: 50px;" >S<span style="font-size: 25px;">hop</span></router-link>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-      <router-link to="/" class="nav-link" >Home</router-link>
-      </li>
+
       <li class="nav-item">
         <router-link to="/about" class="nav-link">About</router-link>
+      </li>
+      <li class="nav-item">
+        <router-link to="/checkout" class="nav-link">My Cart</router-link>
       </li>
 
     </ul>
@@ -50,5 +51,20 @@ export default {
 .btn-secondary:focus, .btn-secondary.focus{
   box-shadow: #fff !important;
 }
+li{
+    margin-top: 20px
+}
+.bg-light{
+  background: #fff !important;
+  /* position: fexid !important; */
+  
 
+}
+/* .hello{
+  position: fexid !important;
+
+  z-index: 9999;
+  right: 0;
+  left: 0;
+} */
 </style>
