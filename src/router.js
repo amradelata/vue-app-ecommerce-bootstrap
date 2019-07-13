@@ -54,6 +54,11 @@ const router = new Router({
       ]
     },
     {
+      path: '/product/:id',
+      name: 'singleBage',
+      component: () => import('./views/singleBage.vue')
+    },
+    {
       path: '/about',
       name: 'about',
       // route level code-splitting

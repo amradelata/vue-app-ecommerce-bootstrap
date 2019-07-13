@@ -10,7 +10,9 @@
         <div class="itms" >
           <div class="itme"  v-for="product in products">
             <div class="h-entry">
+              <router-link v-bind:to="'/product/' + product.productId ">
               <div class="img-fluid img" :style="{backgroundImage: 'url(' + product.img + ')' }"></div>
+              </router-link>
               <h2><a href="#">{{product.name}}</a></h2>
               <div class="meta mb-4">Ham Brook <span class="mx-2">&bullet;</span> Jan 18, 2019<span class="mx-2">&bullet;</span> <a href="#">News</a></div>
               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus eligendi nobis ea maiores sapiente veritatis reprehenderit suscipit quaerat rerum voluptatibus a eius.</p>
@@ -21,7 +23,7 @@
                     :price="product.price"
                     :name="product.name">
                 </add-to-cart>
-
+            
             </div> 
           </div>
         </div>
