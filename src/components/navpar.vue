@@ -15,28 +15,48 @@
       <li class="nav-item">
         <router-link to="/checkout" class="nav-link">My Cart</router-link>
       </li>
-
+      <li class="nav-item">
+        <router-link to="/shop" class="nav-link">My Shop</router-link>
+      </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <!-- <b-button class="btn btn-outline-success my-2 my-sm-0" type="submit" v-b-modal.modal-1>Search</b-button> -->
-        <!-- <b-button v-b-modal.modal-center>get started</b-button> -->
-          <b-button v-b-modal.modal-center>Get started</b-button>
 
-
- 
-    </form>
+     <input class="form-control mr-sm-2 search" type="search" placeholder="Search" aria-label="Search" style="width:300px"  v-model="search">
+      <b-button v-b-modal.modal-center>Log in</b-button>
   </div>
 </nav>
   </div>
 </template>
 
 <script>
+import {db} from '../firebase';
 export default {
   name: 'navpar',
   props: {
     msg: String
-  }
+  },
+  data(){
+    return {
+      products: [],
+      search: '',
+    }
+  },
+ computed : {
+    filteredList() {
+    if(this.search){
+      return this.products.filter((product) =>{
+
+        return product.name.startsWith(this.search);
+      })
+    }else{
+      return this.products
+    }
+    }
+},
+  firestore(){
+      return {
+        products: db.collection('products'),
+      }
+  },
 }
 </script>
 

@@ -1,9 +1,13 @@
 <template>
     <div class="products site-blocks-cover">
-<navpar/>
+<!-- nav -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light container">
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" v-model="Search" @keyup.enter="showMeWhatYouGat">
+</nav>
+<!-- nav -->
         <div class="container">
             <!-- hero -->
-            <div class="row align-items-center justify-content-center">
+            <!-- <div class="row align-items-center justify-content-center">
                 <div class="col-md-12" style="position: relative;" data-aos="fade-up">
                     <b-row class="mt-2">
                         <b-col sm="6">
@@ -19,122 +23,91 @@
                         </b-col>
                     </b-row>
                 </div>
-            </div>
+            </div> -->
         <!-- hero -->
-        
-        </div>
-        </div>
+
+    <hr>
+
+<div class="table-responsive">
+<table class="table">
+<thead>
+<tr>
+<th>Name</th>
+<th>Price</th>
+<th>image</th>
+</tr>
+</thead>
+<tbody>
+<tr v-for="product in products">
+<td>
+{{product.name}}
+</td>
+<td>
+{{product.price}}
+</td>
+<td>
+<div class="img" :style="{ backgroundImage: 'url(' + product.img + ')' }"></div>
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<input class="form-control mr-sm-2" type="search" placeholder="Search" v-model="Search" @keyup.enter="showMeWhatYouGat">
+
+</div>
 </template>
-
-
 <script>
 
-import { VueEditor } from "vue2-editor";
 import {fb,db}from '../firebase';
 export default {
   name: "products",
   props: {
     msg: String
   },
- components: {
-    VueEditor
-  },
     data(){
         return{
+           Search: '',
            products:[],
-            product:{
-                name: null,
-                productDescription: null,
-                price: null,
-                img: null,
-                links: null,
-                productId: null
-            },
-            actevItem: null,
-            modal: null,
-            link: null
+        }
+    },
+    methods:{
+        showMeWhatYouGat(){
+            console.log(this.products[0]);
 
+            if (this.Search == this.products[0].name){
+                // this.products[0].name.style.display = "none"
+                // console.log(this.products[0].productId)
+                this.$router.replace('../product/'+ this.products[0].productId);
+            console.log('this is here');
+                return
+                    this.products.filter((product) => {
+
+            })
+
+            }else{
+                console.log('not fonded');
+            }
+ 
+        }
+    },
+    computed:{
+        filterproducts:function (){
+            return
+                this.products.filter((product) => {
+                return product.name.match(this.Search);
+
+        })
+            
         }
     },
     firestore(){
-        return{
-             products: db.collection('products'),
-        }
-    },
-    mounted(){
-        this.reset()
-    },
-    //   components: {
-    //     products
-    //     },
-    methods:{
-        reset(){
-            this.product = {   //error not working
-            name: null,
-            productDescription: null,
-            price: null,
-            img: null,
-            links: [],
-            }
-        },
-        addNew(){
-            
-            this.modal = 'new';
-            },
-        addProduct(){
-            this.$firestore.products.add(this.product)
-            Toast.fire({
-                type: 'success',
-                title: 'Product created successfully'
-            })
-        },
-        deleteProduct(doc){
-            // start animation delete popup
-            Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            type: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
-            }).then((result) => {
-            if (result.value) {
-                // console.log(doc['.key'])
-                this.$firestore.products.doc(doc['.key']).delete()
-                // toast poopup
-                    Toast.fire({
-                    type: 'success',
-                    title: 'Delete in successfully'
-                    })
-            }
-            })
-            // end animation delete popup
-        },
-        editProduct(product){
-            this.modal = 'edit';
-            this.product = product
-            // console.log(this.product['.key'])
-        },
-    updateProduct(){
-        this.$firestore.products.doc(this.product['.key']).update(this.product);//error
-        // Toast.fire({
-        // type: 'success',
-        // title: 'Updated  successfully'
-        //   })
-        
-    },
-        tags(){
-            this.product.links.push(this.link);
-            this.link = ''
-        },
-        uploadImage(e){
-            let file = e.target.files[0]
-
-            let storageRef = fb.storage().ref('products/' + file.name); //error vido 45/46/47
-            storageRef .put(file);
-        }
+    return{
+        products: db.collection('products'),
     }
+    },
 }
 </script>
 
@@ -172,61 +145,7 @@ export default {
 .img-fluid{
 display: inline-block;
 }
-/* green btn */
-.btn.btn-primary{
-    font-size: 16px;
-    border-radius: 30px;
-    padding: 10px 30px;
-    border-width: 2px;
-    background: #00d2b5;
-    border-color: #00d2b5;
-    color: #fff;
-    box-shadow: 0 4px 20px -5px rgba(0, 210, 181, 0.4);
-}
-.btn.btn-primary:hover{
-color: #000;
-background: #fff;
-transition: 0.36s
-}
-/* green btn */
 
-/* red btn */
-.btn.btn-danger{
-    font-size: 16px;
-    border-radius: 30px;
-    padding: 10px 30px;
-    border-width: 2px;
-    background: #ff7979;
-    border-color: #ff7979;
-    color: #fff;
-    box-shadow: 0 4px 20px -5px rgb(235, 77, 75);
-}
-.btn.btn-danger:hover{
-color: #000;
-background: #fff;
-transition: 0.36s
-}
-/* red btn */
-
-/* bule btn */
-.btn.btn-info{
-    font-size: 16px;
-    border-radius: 30px;
-    padding: 10px 30px;
-    border-width: 2px;
-    background: rgb(99, 205, 218);
-    border-color: rgb(99, 205, 218);
-    color: #fff;
-    box-shadow: 0 4px 20px -5px rgb(61, 193, 211);
-    margin-right: 20px
-}
-.btn.btn-info:hover{
-color: #000;
-background: #fff;
-transition: 0.36s
-}
-
-/* bule btn */
 .img{
   height: 100px;
   width: 100%;

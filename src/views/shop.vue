@@ -3,11 +3,14 @@
       <div class="container">
         <div class="row mb-5">
           <div class="col-12 text-center">
-            <h2 class="section-title mb-3">Our Products</h2>
+          <!-- <navpar/> -->
+           <input class="form-control mr-sm-2 search" type="search" placeholder="Search" aria-label="Search" style="width:300px"  v-model="search">
+           <b-button >click me</b-button>
           </div>
         </div>
  <!-- itms-->
-        <div class="itms" >
+        <div class="itms results" >
+          
           <div class="itme"  v-for="product in filteredList">
             <div class="h-entry">
               <router-link v-bind:to="'/product/' + product.productId ">
@@ -47,16 +50,10 @@ export default {
 data(){
     return {
         products: [],
-         search: ''
-    
+        search: '',
     }
   },
-  methods:{
-    // getImage(images){
-    // //   return images[0];   // error
-    // }
-  },
-   computed : {
+ computed : {
     filteredList() {
     if(this.search){
       return this.products.filter((product) =>{
