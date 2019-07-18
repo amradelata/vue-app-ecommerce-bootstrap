@@ -1,6 +1,8 @@
 <template>
     <div class="profile site-blocks-cover">
-      <navpar/>
+    <Login/>
+
+    <navpar/>
         <div class="container">
             <!-- hero -->
             <div class="row align-items-center justify-content-center">
@@ -84,7 +86,7 @@
             </b-tabs>
           </b-card>
         </div>
-
+      <!-- form -->
 
         </div>
     </div>

@@ -1,7 +1,8 @@
 <template>
-    <div class="site-section bg-light" id="about-section">
-      <Login/>
-      <navpar/>
+    <div id="about-section">
+    <Login/>
+
+    <navpar/>
         <div class="container">
             <div class="row align-items-center justify-content-center">
                 <div class="col-md-12" style="position: relative;" data-aos="fade-up">

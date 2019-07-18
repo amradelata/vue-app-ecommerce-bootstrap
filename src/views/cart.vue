@@ -1,6 +1,8 @@
 <template>
 <div class="card">
 
+    <Login/>
+
     <navpar/>
 <div class="container">
     <div class="container mt-5 pt-5">

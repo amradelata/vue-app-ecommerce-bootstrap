@@ -1,6 +1,7 @@
 <template>
     <div class="products site-blocks-cover">
 <navpar/>
+<Login/>
         <div class="container">
             <!-- hero -->
             <div class="row align-items-center justify-content-center">

@@ -7,86 +7,65 @@
 
        <b-modal 
        :footer-text-variant="footerTextVariant"
-       id="modal-center" centered title="BootstrapVue">
-      <div>
-      <b-tabs content-class="mt-3" justified>
-      <b-tab title="Log In" active>
-
-      <div>
-      <b-form >
-        <!--  -->
-      <b-input
-      id="inline-form-input-name"
-      class="mb-2 mr-sm-2 mb-sm-0"
-      placeholder="user name"
-      type="text"
-      v-model="name"
-      ></b-input>
-
-      <b-input
-      id="inline-form-input-name"
-      class="mb-2 mr-sm-2 mb-sm-0"
-      placeholder="Email"
-      type="email"
-      v-model="email"
-      ></b-input>
-
-      <b-input-group class="mb-2 mr-sm-2 mb-sm-0">
-      <b-input id="inline-form-input-username" placeholder="password" type="password" @keyup.enter="login" v-model="password"></b-input>
-      </b-input-group>
-    <!--  -->
-
-        <b-button
-          variant="primary"
-          size="sm"
-          class="float-right"
-          @click="login"
-        >
-          Log in
-        </b-button>
-      </b-form>
-      </div>
-      </b-tab>
-      <b-tab title="Sign Up">
-
-      <div>
-      <b-form >
-        <!--  -->
-        <h2 class="text-center">Sign Up</h2>
-            
-      <b-input-group class="mb-2 mr-sm-2 mb-sm-0">
-
-        <b-input id="username" type="text" v-model="name" placeholder="Your name"></b-input>
-        <b-input id="email" placeholder="email" type="email" v-model="email"></b-input>
-        <b-input id="password" placeholder="password" type="password" v-model="password"></b-input>
-      </b-input-group>
-
-<!--  -->
-
-  
+        hide-footer
+       id="modal-center" centered title="SHOP">
 
 
-          
-      </b-form>
-      </div>
-      </b-tab>
-      </b-tabs>
-      </div>
-
-        <div slot="modal-footer" class="w-100">
-        <p class="float-left">Modal Footer Content</p>
-
-        <b-button
-          variant="primary"
-          size="sm"
-          class="float-right"
-          @click="register"
-        >
-          sumpet
-        </b-button>
-
-
-      </div>
+        <!-- form -->
+        <div>
+          <b-card no-body>
+            <b-tabs pills card>
+              <!-- tap#1 -->
+              <b-tab title="Log In" active><b-card-text>
+                <b-row>
+                  <!-- <b-col sm="6">
+                 <b-form-input placeholder="user name" type="text" v-model="name"></b-form-input>
+                  </b-col> -->
+                  <b-col sm="12">
+                 <b-form-input type="email" v-model="email" placeholder="Email"></b-form-input>
+      
+                  </b-col>
+              </b-row>
+                  <b-row>
+                  <b-col sm="12">
+                   <b-form-input placeholder="password" type="password" @keyup.enter="login" v-model="password"></b-form-input>
+                  </b-col>
+                  </b-row>
+                    <b-row>
+                      <b-col sm="4">
+                      <b-button variant="info" class="mt" @click="login">Log in</b-button>
+                      </b-col>
+                    </b-row>
+                </b-card-text>
+                </b-tab>
+              <!-- tap#1 -->
+              <!-- tap#2 -->
+              <b-tab title="Sign In"><b-card-text>
+             <b-row>
+                  <b-col sm="6">
+                 <b-form-input v-model="name" placeholder="Your name"></b-form-input>
+                  </b-col>
+                  <b-col sm="6">
+                 <b-form-input placeholder="email" type="email" v-model="email"></b-form-input>
+                  </b-col>
+              </b-row>
+                  <b-row>
+                  <b-col sm="12">
+                   <b-form-input placeholder="password" type="password" v-model="password"></b-form-input>
+                  </b-col>
+                  </b-row>
+                    <b-row>
+                       <b-col sm="4">
+                        <b-button variant="info" class="mt" @click="register">Sign In</b-button>
+                      </b-col>
+                    </b-row>
+                </b-card-text>
+                </b-tab>
+              <!-- tap#2 -->
+            </b-tabs>
+          </b-card>
+        </div>
+      <!-- form -->
       </b-modal>
       </div>
 </div>
@@ -105,7 +84,7 @@ data(){
     name:null,
     email:null,
     password:null,
-    footerTextVariant: 'dark'
+    footerTextVariant: 'dark',
   }
 },
 methods:{
@@ -179,3 +158,9 @@ methods:{
     
 
 </script>
+
+<style scoped>
+input{
+  margin-bottom: 35px
+}
+</style>

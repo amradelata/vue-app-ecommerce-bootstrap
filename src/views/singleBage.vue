@@ -1,7 +1,9 @@
 <template>
     <div id="single-product-page">
 
-        <navpar/>
+    <Login/>
+
+    <navpar/>
         <div class="container">
             <!-- hero -->
             <div class="row align-items-center justify-content-center">
@@ -94,6 +96,10 @@ firestore(){
 display: inline-block;
     height: 500px;
     width: 100%;
+}
+.img{
+  background-size:cover;
+  background-position: center center
 }
 /* green btn */
 .btn.btn-primary{

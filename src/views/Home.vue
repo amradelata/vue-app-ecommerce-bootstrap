@@ -17,7 +17,7 @@
 
     <!-- modale -->
 
-<miniCart/>
+<!-- <miniCart/> -->
  
   </div>
 </template>
