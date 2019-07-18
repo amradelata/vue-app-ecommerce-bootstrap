@@ -7,7 +7,7 @@
    
 
     <hero/>
-    <!-- <ProductList/> -->
+    <ProductList/>
     <learnMore/>
     <contact/>
 
@@ -24,11 +24,11 @@
 
 <script>
 import hero from '../components/hero.vue'
-import miniCart from '../components/miniCart.vue'
+// import miniCart from '../components/miniCart.vue'
 export default {
     components: {
     hero,
-    miniCart
+    // miniCart
     }, 
     
 }
