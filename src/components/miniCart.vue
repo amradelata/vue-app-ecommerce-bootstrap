@@ -31,9 +31,9 @@
         continue shoping
       </b-button>
       <!-- Button with custom close trigger value -->
-    <router-link to="/checkout">
+    <router-link to="/cart">
       <b-button size="sm" variant="outline-secondary" @click="hide('forget')">
-        Checkout
+        cart
       </b-button>
     </router-link>
     </template>

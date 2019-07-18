@@ -4,8 +4,33 @@
         <div class="row mb-5">
           <div class="col-12 text-center">
           <!-- <navpar/> -->
+
+          <!-- nav -->
+              <nav class="navbar navbar-expand-lg navbar-light bg-light container">
+            <router-link to="/" class="navbar-brand" style="color: #00d2b5; font-size: 50px;" >S<span style="font-size: 25px;">hop</span></router-link>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+
+                <li class="nav-item">
+                  <router-link to="/about" class="nav-link">About</router-link>
+                </li>
+                <li class="nav-item">
+                  <router-link to="/card" class="nav-link">My Cart</router-link>
+                </li>
+                <li class="nav-item">
+                  <router-link to="/shop" class="nav-link">My Shop</router-link>
+                </li>
+              </ul>
+
            <input class="form-control mr-sm-2 search" type="search" placeholder="Search" aria-label="Search" style="width:300px"  v-model="search">
-           <b-button >click me</b-button>
+              
+            </div>
+          </nav>
+          <!-- nav -->
           </div>
         </div>
  <!-- itms-->
@@ -75,7 +100,9 @@ data(){
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style (scoped)>
 
-
+li{
+    margin-top: 20px
+}
 
 .h-entry h2 a:hover{
   text-decoration: none

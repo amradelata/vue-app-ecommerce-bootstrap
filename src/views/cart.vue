@@ -1,0 +1,252 @@
+<template>
+<div class="card">
+
+    <navpar/>
+<div class="container">
+    <div class="container mt-5 pt-5">
+        <div class="row">
+            <div class="col=md=9">
+                <!-- <h4 class="py-4">card page </h4> -->
+                <ul>
+                    <li v-for="(item, i) in this.$store.state.cart" :key="i" class="media m-5 liItem">
+                        <div class="img" :style="{ backgroundImage: 'url(' + item.productImage + ')'  }"></div>
+                        <div class="media-body">
+                            <h5 class="mt-0">{{item.productName}}</h5>
+                            <h3 style="color:#006fcc; display:inline-block; margin-left: 35px">{{ item.productPrice + " EGP"}}</h3>
+                            <p class="mt-0">Quantity : {{item.productQuantity }}</p>
+                            <button class="btn btn-danger" @click="hiedtotal(),$store.commit('removeFromCart',item)">Delete</button>
+                            <!--  -->
+                            <button class="btn btn-primary" @click="item.productQuantity += 1; addQty(i ,item.productQuantity)" color="primary">+1</button>
+                            <button class="btn btn-primary" v-if="item.productQuantity > 1" @click="(item.productQuantity > 1) ? item.productQuantity -= 1 : ''" color="primary">-1</button>
+                            <!--  -->
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+
+            <div v-if="totalPrice" class="col-md=3 total">
+              <span>Total price</span>
+                <h3 class="totalTitile">{{ total + " EGP"}}</h3>
+                   <router-link to="/checkOut" class="btn btn-info block">check out</router-link>
+            </div>
+
+
+    <div v-else="emptyimg" class="site-blocks-cover">
+        <div class="container">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-md-12" style="position: relative;" data-aos="fade-up">
+                    <b-row >
+                        <b-col sm="6">
+                            <div class=" content">
+                                <h1>your cart is empty and cold <br> :(</h1>
+                                <!-- <p class="mb-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam assumenda ea quo cupiditate facere deleniti fuga officia.</p> -->
+                                <div>
+                                    <!-- <a href="#" class="btn btn-primary mr-2 mb-2">Get Started</a> -->
+                                </div>
+                            </div>
+                        </b-col>
+                        <b-col sm="6">
+                            <img src="https://images.pexels.com/photos/296916/pexels-photo-296916.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" alt="Image" class="img-fluid img-absolute">
+                        </b-col>
+                    </b-row>
+                </div>
+            </div>
+        </div>
+    </div>
+        </div>
+    </div>
+</div>
+    <contact/>
+
+<last/> 
+</div>
+</template>
+
+<script>
+export default {
+    data() {
+      return {
+         cart: [],
+         totalPrice: false,
+         emptyimg: false
+      }
+    },
+  computed: {
+    
+    count: function (){
+     return this.$store.state.cart.reduce(function (n, cart) {
+        return cart.productQuantity + n;
+      }, 0);
+    },
+    total: function(){
+      return this.$store.state.cart.reduce(function(n,cart){
+        return cart.productPrice * cart.productQuantity + n;
+      }, 0).toFixed(2);
+    }
+      // console.log("sdsadasfsa")
+  },
+  methods:{
+      addQty(i, id){
+        console.log(i, id)// eslint-disable-line no-console
+        console.log(this.$store.state.cart[i].productQuantity)// eslint-disable-line no-console
+      },
+      hiedtotal(){
+         if(this.$store.state.cart.length > 1){
+         this.totalPrice = true;
+         this.emptyimg = false
+
+         }else if(this.$store.state.cart.length = 1){
+         this.totalPrice = false;
+         this.emptyimg = true
+
+         }
+        console.log(this.$store.state.cart.length)
+      }
+  },created(){
+         console.log(this.$store.state.cart)
+
+         if(this.$store.state.cart.length > 0){
+         this.totalPrice = true
+
+         }else{
+         this.totalPrice = false
+
+         }
+
+  }
+}
+</script>
+
+
+<style scoped >
+.liItem{
+  width: 550px
+}
+.totalTitile{
+color:#006fcc; display:inline-block; margin-left: 50px;
+}
+.block{
+  display: block;
+  width: 100%;
+  margin-top: 35px
+}
+.total{
+  background: #fbfbfb;
+  text-align: center;
+  height: 200px;
+  /* width:300px; */
+  /* margin-left: 50px; */
+  padding: 20px;
+   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+   margin-top:50px
+}
+.total span{
+  font-size: 30px
+}
+
+.img {
+
+    width: 200px;
+    height: 200px;
+    background-size: cover ;
+    /* margin-right: 35px */
+}
+
+/* red btn */
+.btn.btn-danger{
+    font-size: 16px;
+    border-radius: 30px;
+    padding: 10px 30px;
+    border-width: 2px;
+    background: #ff7979;
+    border-color: #ff7979;
+    color: #fff;
+    box-shadow: 0 4px 20px -5px rgb(235, 77, 75);
+    float:right;
+    /* margin-left:10px */
+}
+.btn.btn-danger:hover{
+color: #000;
+background: #fff;
+transition: 0.36s
+}
+/* red btn */
+
+.btn.btn-primary{
+    font-size: 16px;
+    border-radius: 30px;
+    padding: 10px 30px;
+    border-width: 2px;
+    background: #00d2b5;
+    border-color: #00d2b5;
+    color: #fff;
+    -webkit-box-shadow: 0 4px 20px -5px rgba(0, 210, 181, 0.4);
+    box-shadow: 0 4px 20px -5px rgba(0, 210, 181, 0.4);
+    margin-left:10px
+}
+.btn.btn-primary:hover{
+color: #000;
+background: #fff;
+transition: 0.36s
+}
+
+
+/* bule btn */
+.btn.btn-info{
+    font-size: 16px;
+    border-radius: 30px;
+    padding: 10px 30px;
+    border-width: 2px;
+    background: rgb(99, 205, 218);
+    border-color: rgb(99, 205, 218);
+    color: #fff;
+    box-shadow: 0 4px 20px -5px rgb(61, 193, 211);
+    margin-right: 20px
+}
+.btn.btn-info:hover{
+color: #000;
+background: #fff;
+transition: 0.36s
+}
+
+/* bule btn */
+
+
+/* empty img */
+
+ .site-blocks-cover, .site-blocks-cover > .container > .row {
+    min-height: 400px;
+    height: calc(80vh); 
+    }
+
+  .site-blocks-cover.inner-page-cover, .site-blocks-cover.inner-page-cover > .container > .row {
+    min-height: 400px;
+    height: calc(20vh); }
+  .site-blocks-cover h1 {
+    font-size: 3.5rem;
+    font-weight: 400;
+    color: #000;
+    font-weight: 900; }
+    @media (max-width: 991.98px) {
+      .site-blocks-cover h1 {
+        font-size: 2rem; } }
+  .site-blocks-cover p {
+    color: #6c757d;
+    font-size: 1rem;
+    font-weight: 300; }
+  .site-blocks-cover .intro-text {
+    font-size: 16px;
+    line-height: 1.5; }
+  @media (max-width: 991.98px) {
+    .site-blocks-cover .display-1 {
+      font-size: 3rem; } }
+.content{
+    /* margin: auto; */
+    display: inline-block;
+    margin-top: 100px
+}
+.img-fluid{
+display: inline-block;
+}
+</style>

@@ -13,14 +13,14 @@
         <router-link to="/about" class="nav-link">About</router-link>
       </li>
       <li class="nav-item">
-        <router-link to="/checkout" class="nav-link">My Cart</router-link>
+        <router-link to="/cart" class="nav-link">My Cart</router-link>
       </li>
       <li class="nav-item">
         <router-link to="/shop" class="nav-link">My Shop</router-link>
       </li>
     </ul>
 
-     <input class="form-control mr-sm-2 search" type="search" placeholder="Search" aria-label="Search" style="width:300px"  v-model="search">
+     
       <b-button v-b-modal.modal-center>Log in</b-button>
   </div>
 </nav>

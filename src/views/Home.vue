@@ -7,7 +7,7 @@
    
 
     <hero/>
-    <ProductList/>
+    <!-- <ProductList/> -->
     <learnMore/>
     <contact/>
 

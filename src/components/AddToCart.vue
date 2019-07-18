@@ -29,6 +29,10 @@ export default {
   methods:{
     addToCart(){
       this.$store.commit('addToCart', this.item)
+        Toast.fire({
+        type: 'success',
+        title: '1 item added to cart'
+        })
     //   console.log(this.item)
     }
   }
