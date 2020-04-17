@@ -205,7 +205,7 @@ export default {
         editProduct(product){
             this.modal = 'edit';
             this.product = product
-            // console.log(this.product['.key'])
+            console.log(this.products.id)
         },
     updateProduct(){
         this.$firestore.products.doc(this.product['.key']).update(this.product);//error

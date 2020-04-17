@@ -1,7 +1,5 @@
 <template>
   <div class="add-to-cart">
-   
- 
     <b-button @click="addToCart(), $bvModal.show('modal-scoped')" class="btn btn-info" size="sm">Add to Cart</b-button>
   </div>
 </template>

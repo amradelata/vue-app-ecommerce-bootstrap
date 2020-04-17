@@ -114,8 +114,9 @@ methods:{
           })
           .catch(function(error) {
               // Handle Errors here.
-              var errorCode = error.code;
-              var errorMessage = error.message;
+              let errorCode = error.code;
+              let errorMessage = error.message;
+              // [START_EXCLUDE]
               if (errorCode === 'auth/wrong-password') {
                   alert('Wrong password.');
               } else {

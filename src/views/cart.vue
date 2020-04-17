@@ -84,7 +84,7 @@ export default {
     total: function(){
       return this.$store.state.cart.reduce(function(n,cart){
         return cart.productPrice * cart.productQuantity + n;
-      }, 0).toFixed(2);
+      }, 0).toFixed(0);
     }
       // console.log("sdsadasfsa")
   },
