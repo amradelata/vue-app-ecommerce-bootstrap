@@ -175,4 +175,10 @@ a:hover {
   color: #00d2b5;
   text-decoration: none;
 }
+@media screen and (max-width: 768px) {
+  .itme {
+    flex-basis: calc(100% - 20px);
+    margin: 50px 0;
+  }
+}
 </style>
