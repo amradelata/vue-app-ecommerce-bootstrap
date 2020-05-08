@@ -1,9 +1,9 @@
 <template>
   <div class="hello">
     <nav class="navbar navbar-expand-lg navbar-light bg-light container">
-      <router-link to="/" class="navbar-brand" style="color: #00d2b5; font-size: 50px;">
-        S
-        <span style="font-size: 25px;">hop</span>
+      <router-link to="/" class="navbar-brand">
+        <h1 style="color: #00d2b5; font-size: 50px; display: inline-block;">S</h1>
+        <span style="font-size: 25px; color: #00d2b5;">hop</span>
       </router-link>
       <button
         class="navbar-toggler"
@@ -30,7 +30,7 @@
             <router-link to="/shop" class="nav-link">My Shop</router-link>
           </li>
           <li class="nav-item">
-            <router-link to="/admin" class="nav-link">admin</router-link>
+            <router-link to="/admin/products" class="nav-link">admin</router-link>
           </li>
         </ul>
 
@@ -72,6 +72,9 @@ export default {
   methods: {
     togelnav() {
       this.$refs["navItems"].classList.toggle("collapse");
+    },
+    searchRout() {
+      this.$router.push("/search?test=" + this.search);
     }
   }
 };

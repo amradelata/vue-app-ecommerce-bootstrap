@@ -5,11 +5,11 @@
     <navpar />
     <div class="container">
       <div class="container mt-5 pt-5">
-        <div class="row">
+        <div>
           <div>
             <!-- <h4 class="py-4">card page </h4> -->
-            <ul>
-              <li v-for="(item, i) in this.$store.state.cart" :key="i" class>
+            <ul class="itms">
+              <li v-for="(item, i) in this.$store.state.cart" :key="i" class="itme">
                 <div class="img" :style="{ backgroundImage: 'url(' + item.productImage + ')'  }"></div>
                 <div class="myCartBtn">
                   <div>
@@ -41,7 +41,7 @@
           <div v-if="totalPrice" class="total">
             <span>Total price</span>
             <h3 class="totalTitile">{{ total + " EGP"}}</h3>
-            <router-link to="/checkOut" class="btn btn-info block">check out</router-link>
+            <router-link to="/checkOut" class="btn btn-info checkOut">check out</router-link>
           </div>
 
           <div v-else="emptyimg" class="site-blocks-cover">
@@ -119,8 +119,9 @@ export default {
       } else if ((this.$store.state.cart.length = 1)) {
         this.totalPrice = false;
         this.emptyimg = true;
+      } else {
+        console.log(this.$store.state.cart.length);
       }
-      console.log(this.$store.state.cart.length);
     }
   },
   created() {
@@ -137,21 +138,73 @@ export default {
 
 
 <style scoped >
-li {
-  margin: 35px 0;
+.checkOut {
+  display: block;
 }
-.liItem {
-  width: 550px;
+li {
+  margin-top: 20px;
+}
+
+.h-entry h2 a:hover {
+  text-decoration: none;
+}
+
+.itms {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.itme {
+  flex-basis: calc(50% - 20px);
+  /* margin: 10px; */
+  /* margin-bottom: 20px; */
+}
+.h-entry img {
+  margin-bottom: 30px;
+}
+
+.h-entry .meta {
+  color: #b3b3b3;
+  font-size: 14px;
+}
+
+.h-entry h2 {
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+.content {
+  font-size: 18px;
+}
+.img {
+  width: 100;
+  height: 200px;
+  background-size: cover;
+  background-position: center center;
+  margin-bottom: 20px;
+  /* background-repeat: no-repeat; */
+}
+
+a {
+  color: #00d2b5;
+  background-color: transparent;
+  /* font-size: 30px; */
+}
+a:hover {
+  color: #00d2b5;
+  text-decoration: none;
+}
+@media screen and (max-width: 768px) {
+  .itme {
+    flex-basis: calc(100% - 20px);
+    margin: 50px 0;
+  }
 }
 .totalTitile {
   color: #006fcc;
   display: inline-block;
   margin-left: 50px;
-}
-.block {
-  display: block;
-  width: 100%;
-  margin-top: 35px;
 }
 
 .total {
@@ -168,12 +221,6 @@ li {
 }
 .total span {
   font-size: 30px;
-}
-
-.img {
-  height: 200px;
-  background-size: cover;
-  /* margin-right: 35px */
 }
 
 /* red btn */
@@ -224,7 +271,7 @@ li {
   border-color: rgb(99, 205, 218);
   color: #fff;
   box-shadow: 0 4px 20px -5px rgb(61, 193, 211);
-  margin-right: 20px;
+  margin: 5px 0;
 }
 .btn.btn-info:hover {
   color: #000;
@@ -275,7 +322,7 @@ li {
 .content {
   /* margin: auto; */
   display: inline-block;
-  margin-top: 100px;
+  margin: 100px 0;
 }
 .img-fluid {
   display: inline-block;
@@ -284,20 +331,5 @@ li {
   margin: auto;
   text-align: center;
   width: 100%;
-}
-@media screen and (max-width: 768px) {
-  .myCartBtn {
-    width: 100%;
-  }
-  li {
-    margin: 35px 0;
-  }
-  .img {
-    width: auto;
-  }
-  ul {
-    padding: 0;
-    margin: 0;
-  }
 }
 </style>
